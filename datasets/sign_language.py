@@ -1,5 +1,7 @@
 import random
 import numpy as np
+import tensorflow as tf
+import keras
 from keras.utils import np_utils
 from tensorflow.keras.utils import to_categorical
 from keras.preprocessing import image
@@ -43,9 +45,9 @@ def load_data(container_path='datasets/', folders=['A', 'B', 'C'],
 
 def path_to_tensor(img_path, size):
     # loads RGB image as PIL.Image.Image type
-    img = image.load_img(img_path, target_size=(size, size))
+    img = keras.utils.load_img(img_path, target_size=(size, size))
     # convert PIL.Image.Image type to 3D tensor
-    x = image.img_to_array(img)
+    x = tf.keras.utils.img_to_array(img)
     # convert 3D tensor to 4D tensor 
     return np.expand_dims(x, axis=0)
 
